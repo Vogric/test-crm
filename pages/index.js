@@ -1,11 +1,11 @@
-import Head from "next/head";
 import Layout from "../components/Layout";
-import styles from "../styles/Home.module.css";
 
-export default function Home() {
+const Index = () => {
   return (
-    <>
-      <Layout />
-    </>
+    <Layout>
+      <h1 className="text-gray-900 text-4xl p-10">Clients</h1>
+    </Layout>
   );
-}
+};
+
+export default Index;

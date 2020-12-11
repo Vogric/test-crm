@@ -1,7 +1,10 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import Sidebar from "./Sidebar";
 
 const Layout = ({ children }) => {
+  const { pathname } = useRouter();
+
   return (
     <>
       <Head>
@@ -17,9 +20,20 @@ const Layout = ({ children }) => {
           rel="stylesheet"
         />
       </Head>
-
-      <Sidebar />
-      {children}
+      {pathname === "/login" || pathname === "/signin" ? (
+        <div className="bg-blue-900 min-h-screen flex flex-column justify-center">
+          <div>{children}</div>
+        </div>
+      ) : (
+        <div className="bg-gray-300 min-h-screen">
+          <div className="flex min-h-screen">
+            <Sidebar />
+            <main className="sm:w-2/3 xl:w-4/5 sm:min-h-screen p-2">
+              {children}
+            </main>
+          </div>
+        </div>
+      )}
     </>
   );
 };
