@@ -10,6 +10,17 @@ const SignIn = () => {
       email: "",
       password: "",
     },
+    validationSchema: Yup.object({
+      name: Yup.string().required("Name is required"),
+      surname: Yup.string().required("Surname is required"),
+      email: Yup.string()
+        .required("Email is required")
+        .email("Email is not valid"),
+      password: Yup.string()
+        .required("Password is required")
+        .min(8, "Password must have more than 8 characters")
+        .max(30, "Password must have less than 30 characters"),
+    }),
     onSubmit: (values) => {
       console.log(values);
     },
@@ -40,8 +51,16 @@ const SignIn = () => {
                 type="text"
                 value={formik.values.name}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
             </div>
+
+            {formik.touched.name && formik.errors.name && (
+              <div className="my-2 bg-red-100 border-l-2 border-red-500 text-red-700 p-2 mb-3">
+                <p className="font-bold text-sm "> {formik.errors.name} </p>
+              </div>
+            )}
+
             <div className="mb-4">
               <label
                 className="block text-blue-700 text-sm font-bold mb-2"
@@ -56,8 +75,15 @@ const SignIn = () => {
                 type="text"
                 value={formik.values.surname}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
             </div>
+
+            {formik.touched.surname && formik.errors.surname && (
+              <div className="my-2 bg-red-100 border-l-2 border-red-500 text-red-700 p-2 mb-3">
+                <p className="font-bold text-sm "> {formik.errors.surname} </p>
+              </div>
+            )}
             <div className="mb-4">
               <label
                 className="block text-blue-700 text-sm font-bold mb-2"
@@ -72,8 +98,14 @@ const SignIn = () => {
                 type="email"
                 value={formik.values.email}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
             </div>
+            {formik.touched.email && formik.errors.email && (
+              <div className="my-2 bg-red-100 border-l-2 border-red-500 text-red-700 p-2 mb-3">
+                <p className="font-bold text-sm "> {formik.errors.email} </p>
+              </div>
+            )}
             <div className="mb-4">
               <label
                 className="block text-blue-700 text-sm font-bold mb-2"
@@ -88,8 +120,14 @@ const SignIn = () => {
                 type="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
             </div>
+            {formik.touched.password && formik.errors.password && (
+              <div className="my-2 bg-red-100 border-l-2 border-red-500 text-red-700 p-2 mb-3">
+                <p className="font-bold text-sm "> {formik.errors.password} </p>
+              </div>
+            )}
             <input
               type="submit"
               className="bg-blue-700 w-full mt-5 p-2 text-white  uppercas hover:cursor-pointer hover:bg-blue-800"
