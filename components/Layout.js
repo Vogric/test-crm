@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Head>
-        <title>CRM - Client Administration</title>
+        <title>CMYK Panel</title>z
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
